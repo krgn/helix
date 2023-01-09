@@ -187,18 +187,26 @@ or <a href="https://msys2.org/">MSYS2</a>.</p>
 <pre><code>choco install helix
 </code></pre>
 <p><strong>MSYS2:</strong></p>
+<p>Choose the proper command for your system from below:</p>
+<ul>
+<li>For 32 bit Windows 7 or above:</li>
+</ul>
 <pre><code>pacman -S mingw-w64-i686-helix
 </code></pre>
-<p>or</p>
+<ul>
+<li>For 64 bit Windows 7 or above:</li>
+</ul>
 <pre><code>pacman -S mingw-w64-x86_64-helix
 </code></pre>
-<p>or</p>
+<ul>
+<li>For 64 bit Windows 8.1 or above:</li>
+</ul>
 <pre><code>pacman -S mingw-w64-ucrt-x86_64-helix
 </code></pre>
 <h2 id="build-from-source"><a class="header" href="#build-from-source">Build from source</a></h2>
 <pre><code>git clone https://github.com/helix-editor/helix
 cd helix
-cargo install --path helix-term
+cargo install --path helix-term --locked
 </code></pre>
 <p>This will install the <code>hx</code> binary to <code>$HOME/.cargo/bin</code> and build tree-sitter grammars in <code>./runtime/grammars</code>.</p>
 <p>Helix also needs its runtime files so make sure to copy/symlink the <code>runtime/</code> directory into the
@@ -221,7 +229,7 @@ mklink /D runtime &quot;&lt;helix-repo&gt;\runtime&quot;
 </code></pre>
 <p>The runtime location can be overridden via the <code>HELIX_RUNTIME</code> environment variable.</p>
 <blockquote>
-<p>NOTE: if <code>HELIX_RUNTIME</code> is set prior to calling <code>cargo install --path helix-term</code>,
+<p>NOTE: if <code>HELIX_RUNTIME</code> is set prior to calling <code>cargo install --path helix-term --locked</code>,
 tree-sitter grammars will be built in <code>$HELIX_RUNTIME/grammars</code>.</p>
 </blockquote>
 <p>If you plan on keeping the repo locally, an alternative to copying/symlinking
