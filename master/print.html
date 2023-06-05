@@ -318,8 +318,9 @@ the <code>runtime</code> directory within the user's helix config directory (mor
 <pre><code class="language-sh">HELIX_RUNTIME=/home/user-name/src/helix/runtime
 </code></pre>
 <p>Or, create a symlink in <code>~/.config/helix</code> that links to the source code directory:</p>
-<pre><code class="language-sh">ln -s $PWD/runtime ~/.config/helix/runtime
+<pre><code class="language-sh">ln -Ts $PWD/runtime ~/.config/helix/runtime
 </code></pre>
+<p>If the above command fails to create a symbolic link because the file exists either move <code>~/.config/helix/runtime</code> to a new location or delete it, then run the symlink command above again. </p>
 <h4 id="windows-1"><a class="header" href="#windows-1">Windows</a></h4>
 <p>Either set the <code>HELIX_RUNTIME</code> environment variable to point to the runtime files using the Windows setting (search for
 <code>Edit environment variables for your account</code>) or use the <code>setx</code> command in
@@ -459,15 +460,15 @@ function or block of code.</p>
 <tr><td><code>(</code>, <code>[</code>, <code>'</code>, etc.</td><td>Specified surround pairs</td></tr>
 <tr><td><code>m</code></td><td>The closest surround pair</td></tr>
 <tr><td><code>f</code></td><td>Function</td></tr>
-<tr><td><code>c</code></td><td>Class</td></tr>
+<tr><td><code>t</code></td><td>Type (or Class)</td></tr>
 <tr><td><code>a</code></td><td>Argument/parameter</td></tr>
-<tr><td><code>o</code></td><td>Comment</td></tr>
-<tr><td><code>t</code></td><td>Test</td></tr>
+<tr><td><code>c</code></td><td>Comment</td></tr>
+<tr><td><code>T</code></td><td>Test</td></tr>
 <tr><td><code>g</code></td><td>Change</td></tr>
 </tbody></table>
 </div>
 <blockquote>
-<p>💡 <code>f</code>, <code>c</code>, etc. need a tree-sitter grammar active for the current
+<p>💡 <code>f</code>, <code>t</code>, etc. need a tree-sitter grammar active for the current
 document and a special tree-sitter query file to work properly. <a href="./lang-support.html">Only
 some grammars</a> currently have the query file implemented.
 Contributions are welcome!</p>
@@ -476,7 +477,7 @@ Contributions are welcome!</p>
 <p>Navigating between functions, classes, parameters, and other elements is
 possible using tree-sitter and textobject queries. For
 example to move to the next function use <code>]f</code>, to move to previous
-class use <code>[c</code>, and so on.</p>
+type use <code>[t</code>, and so on.</p>
 <p><img src="https://user-images.githubusercontent.com/23398472/152332550-7dfff043-36a2-4aec-b8f2-77c13eb56d6f.gif" alt="Tree-sitter-nav-demo" /></p>
 <p>For the full reference see the <a href="./keymap.html#unimpaired">unimpaired</a> section of the key bind
 documentation.</p>
