@@ -578,6 +578,7 @@ selection to the &quot;func&quot; <code>identifier</code>.</p>
 <p>💡 Mappings marked (<strong>TS</strong>) require a tree-sitter grammar for the file type.</p>
 </blockquote>
 <h2 id="normal-mode"><a class="header" href="#normal-mode">Normal mode</a></h2>
+<p>Normal mode is the default mode when you launch helix. Return to it from other modes by typing <code>Escape</code>.</p>
 <h3 id="movement"><a class="header" href="#movement">Movement</a></h3>
 <blockquote>
 <p>NOTE: Unlike Vim, <code>f</code>, <code>F</code>, <code>t</code> and <code>T</code> are not confined to the current line.</p>
@@ -860,6 +861,7 @@ useful when you're simply looking over text and not actively editing it.</p>
 </tbody></table>
 </div>
 <h2 id="insert-mode"><a class="header" href="#insert-mode">Insert mode</a></h2>
+<p>Accessed by typing <code>i</code> in <a href="keymap.html#normal-mode">normal mode</a>.</p>
 <p>Insert mode bindings are minimal by default. Helix is designed to
 be a modal editor, and this is reflected in the user experience and internal
 mechanics. Changes to the text are only saved for undos when
@@ -908,6 +910,7 @@ home = &quot;no_op&quot;
 end = &quot;no_op&quot;
 </code></pre>
 <h2 id="select--extend-mode"><a class="header" href="#select--extend-mode">Select / extend mode</a></h2>
+<p>Accessed by typing <code>v</code> in <a href="keymap.html#normal-mode">normal mode</a>.</p>
 <p>Select mode echoes Normal mode, but changes any movements to extend
 selections rather than replace them. Goto motions are also changed to
 extend, so that <code>vgl</code>, for example, extends the selection to the end of
@@ -991,6 +994,7 @@ you to selectively add search terms to your selections.</p>
 <tr><td><code>:cquit</code>, <code>:cq</code></td><td>Quit with exit code (default 1). Accepts an optional integer exit code (:cq 2).</td></tr>
 <tr><td><code>:cquit!</code>, <code>:cq!</code></td><td>Force quit with exit code (default 1) ignoring unsaved changes. Accepts an optional integer exit code (:cq! 2).</td></tr>
 <tr><td><code>:theme</code></td><td>Change the editor theme (show current theme if no name specified).</td></tr>
+<tr><td><code>:yank-join</code></td><td>Yank joined selections. A separator can be provided as first argument. Default value is newline.</td></tr>
 <tr><td><code>:clipboard-yank</code></td><td>Yank main selection into system clipboard.</td></tr>
 <tr><td><code>:clipboard-yank-join</code></td><td>Yank joined selections into system clipboard. A separator can be provided as first argument. Default value is newline.</td></tr>
 <tr><td><code>:primary-clipboard-yank</code></td><td>Yank main selection into system primary clipboard.</td></tr>
@@ -1006,8 +1010,8 @@ you to selectively add search terms to your selections.</p>
 <tr><td><code>:show-directory</code>, <code>:pwd</code></td><td>Show the current working directory.</td></tr>
 <tr><td><code>:encoding</code></td><td>Set encoding. Based on <code>https://encoding.spec.whatwg.org</code>.</td></tr>
 <tr><td><code>:character-info</code>, <code>:char</code></td><td>Get info about the character under the primary cursor.</td></tr>
-<tr><td><code>:reload</code></td><td>Discard changes and reload from the source file.</td></tr>
-<tr><td><code>:reload-all</code></td><td>Discard changes and reload all documents from the source files.</td></tr>
+<tr><td><code>:reload</code>, <code>:rl</code></td><td>Discard changes and reload from the source file.</td></tr>
+<tr><td><code>:reload-all</code>, <code>:rla</code></td><td>Discard changes and reload all documents from the source files.</td></tr>
 <tr><td><code>:update</code>, <code>:u</code></td><td>Write changes only if the file has been modified.</td></tr>
 <tr><td><code>:lsp-workspace-command</code></td><td>Open workspace command picker</td></tr>
 <tr><td><code>:lsp-restart</code></td><td>Restarts the language servers used by the current doc</td></tr>
@@ -1091,7 +1095,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>erlang</td><td>✓</td><td>✓</td><td></td><td><code>erlang_ls</code></td></tr>
 <tr><td>esdl</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>fish</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
-<tr><td>forth</td><td>✓</td><td></td><td></td><td></td></tr>
+<tr><td>forth</td><td>✓</td><td></td><td></td><td><code>forth-lsp</code></td></tr>
 <tr><td>fortran</td><td>✓</td><td></td><td>✓</td><td><code>fortls</code></td></tr>
 <tr><td>gdscript</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
 <tr><td>git-attributes</td><td>✓</td><td></td><td></td><td></td></tr>
@@ -1212,6 +1216,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>vue</td><td>✓</td><td></td><td></td><td><code>vue-language-server</code></td></tr>
 <tr><td>wast</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>wat</td><td>✓</td><td></td><td></td><td></td></tr>
+<tr><td>webc</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>wgsl</td><td>✓</td><td></td><td></td><td><code>wgsl_analyzer</code></td></tr>
 <tr><td>wit</td><td>✓</td><td></td><td>✓</td><td></td></tr>
 <tr><td>xit</td><td>✓</td><td></td><td></td><td></td></tr>
@@ -1288,6 +1293,7 @@ Its settings will be merged with the configuration directory <code>config.toml</
 <tr><td><code>color-modes</code></td><td>Whether to color the mode indicator with different colors depending on the mode itself</td><td><code>false</code></td></tr>
 <tr><td><code>text-width</code></td><td>Maximum line length. Used for the <code>:reflow</code> command and soft-wrapping if <code>soft-wrap.wrap-at-text-width</code> is set</td><td><code>80</code></td></tr>
 <tr><td><code>workspace-lsp-roots</code></td><td>Directories relative to the workspace root that are treated as LSP roots. Should only be set in <code>.helix/config.toml</code></td><td><code>[]</code></td></tr>
+<tr><td><code>default-line-ending</code></td><td>The line ending to use for new documents. Can be <code>native</code>, <code>lf</code>, <code>crlf</code>, <code>ff</code>, <code>cr</code> or <code>nel</code>. <code>native</code> uses the platform's native line ending (<code>crlf</code> on Windows, otherwise <code>lf</code>).</td><td><code>native</code></td></tr>
 </tbody></table>
 </div>
 <h3 id="editorstatusline-section"><a class="header" href="#editorstatusline-section"><code>[editor.statusline]</code> Section</a></h3>
